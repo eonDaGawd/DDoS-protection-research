@@ -1,0 +1,10 @@
+iptables -t mangle -A PREROUTING -p udp -m multiport --sports 389,11211,3702,3283,69,123,1900,137,1434,19 -j DROP
+iptables -t mangle -A PREROUTING -p udp -m multiport --sports 17,520,161,111,5353,626,5351,5093,500,523 -j DROP
+iptables -t mangle -A PREROUTING -p udp -m multiport --sports 2049,17185,1604,3478,177,10080,5632,623 -j DROP
+iptables -t mangle -A PREROUTING -p udp --sport 37810 -j DROP
+iptables -t mangle -A PREROUTING -p udp --sport 7001 -j DROP
+iptables -t mangle -A PREROUTING -p udp -m length --length 100:140 -m string --string "nAFS" --algo kmp -j DROP
+iptables -t mangle -A PREROUTING -p udp -m length --length 100:140 -m string --string "OpenAFS" --algo kmp -j DROP
+iptables -t mangle -A PREROUTING -p udp --sport 17185 -j DROP
+iptables -t mangle -A PREROUTING -p udp --sport 6881 -m length --length 320:330 -j DROP
+iptables -t mangle -A PREROUTING -p udp -m length --length 280:300 --sport 32414 -j DROP
