@@ -1,0 +1,5 @@
+** THIS IS A WARNING! these iptables may not work for you, due to the fact it limits the amount of connections active at once, this is being researched as of right now, i'll be updating it**
+
+iptables -t mangle -A PREROUTING -p tcp --dport 443 -m conntrack --ctstate NEW -m string ! --algo bm --string "GET / HTTP/1.1" -j DROP #this is only for if your server only allows one type of request(in this case get requests) dont enable it if you allow post as well.
+iptables -t mangle -A PREROUTING -p tcp --dport 443 -m string --algo bm --string "GET / HTTP/1.1" -m hashlimit --hashlimit 1/sec --hashlimit-mode srcip --hashlimit-srcmask 32 --hashlimit-name getattack -j ACCEPT
+iptables -t mangle -A PREROUTING -p tcp --dport 443 -j DROP
