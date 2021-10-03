@@ -1,0 +1,8 @@
+Iptables should be pre-installed on your vps but if it isn't the commands are here
+
+Firstly, check if it's pre-installed, as shown:
+iptables -h
+
+If it isn't, run the command which is for your os:
+apt install iptables             For Ubuntu
+yum install iptables             For Centos
