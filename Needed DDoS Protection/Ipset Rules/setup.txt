@@ -1,0 +1,13 @@
+These ipset rules block asn's that are known to send DDoS attacks, for example AS16276(ovh) which bypasses ovh vac and is used in ovh-betav2
+
+First we need to install ipset as such:
+apt install ipset             This installation is for ubuntu
+yum install ipset             This installation is for centos
+
+Finally we have to setup ipset, as such:
+ipset -N myBlackhole-4 hash:net family inet
+ipset -N myBlackhole-6 hash:net family inet6
+iptables -t mangle -I PREROUTING -m set --match-set myBlackhole-4 src -j DROP
+ip6tables -t mangle -A PREROUTING -m set --match-set myBlackhole-6 src -j DROP
+
+Now that that's done go block some bad asn's
