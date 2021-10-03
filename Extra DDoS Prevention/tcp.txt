@@ -1,0 +1,2 @@
+iptables -t mangle -A PREROUTING -p tcp --syn -m hashlimit --hashlimit 1/sec --hashlimit-mode srcip --hashlimit-srcmask 32 --hashlimit-name ratelimit -j ACCEPT
+iptables -t mangle -A PREROUTING -p tcp --syn -j DROP
